@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="jquery-3.1.0.js"></script>
+	<script>
+		$(function(){	
+	$.ajax({  
+	             type: "get",  
+	             url: "http://127.0.0.1/imooc/search-box/handle.php",  
+	             // data: {q: "我们上"},
+	             dataType: "jsonp",  
+	             jsonp: "callback",
+	             success: function(data){
+	             	console.log(111); 
+	             	console.log(data); 
+	             },  
+	             error:function(XHR, textStatus, errorThrown){
+	                console.log("error");
+	             }
+	         });//end ajax
+		})
+	</script>
+</head>
+<body>
+	
+</body>
+</html>
