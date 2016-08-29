@@ -15,7 +15,7 @@
 ***
 # 尝试跨域
 - 测试API的响应有问题，能够获取到数据，但是success回到函数不执行，自己写了PHP文件响应没有问题
-- 此bing API 返回头的Content-Type为application/json，而且开启了严格的类型检查X-Content-Type-Options:nosniff)，
+- 此bing API 返回头的Content-Type为application/json，而且开启了严格的类型检查(X-Content-Type-Options:nosniff)，
 - 我们期望得到的是application/javascript 
 - 所以需要修改服务器端的响应头，我们只能在服务器端修改
 
