@@ -3,27 +3,31 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
-	<script src="jquery-3.1.0.js"></script>
-	<script>
-		$(function(){	
-	$.ajax({  
-	             type: "get",  
-	             url: "http://127.0.0.1/imooc/search-box/handle.php",  
-	             // data: {q: "我们上"},
-	             dataType: "jsonp",  
-	             jsonp: "callback",
-	             success: function(data){
-	             	console.log(111); 
-	             	console.log(data); 
-	             },  
-	             error:function(XHR, textStatus, errorThrown){
-	                console.log("error");
-	             }
-	         });//end ajax
-		})
-	</script>
+	<style>
+		.triangle_border_up {
+			width: 0;
+			height: 0;
+			border-width: 0 40px 40px 20px;
+			border-style: solid;
+			border-color: transparent transparent #d5d5d5 transparent;
+			margin: 40px auto;
+			position: relative;
+		}
+		.triangle_border_up span {
+			display: block;
+			width: 0;
+			height: 0;
+			border-width: 0 28px 28px;
+			border-style: solid;
+			border-color: transparent transparent #fc0;
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+	</style>
 </head>
 <body>
-	
+	<div class="triangle_border_up">
+	</div>
 </body>
 </html>

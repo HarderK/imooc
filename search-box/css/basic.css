@@ -1,0 +1,84 @@
+body
+{
+    background-color: #333;
+}
+.bg-div
+{
+    position: relative;
+
+    width: 1228px;
+    height: 690px;
+    margin: 0 auto;
+
+    background: url(img/river.jpg);
+}
+.logo
+{
+    float: left;
+
+    width: 107px;
+    height: 53px;
+    margin: -4px 20px 0 0;
+
+    background-image: url(img/logo.png);
+}
+form
+{
+    float: left;
+
+    padding: 5px;
+
+    background-color: #fff;
+}
+.search-input-text
+{
+    line-height: 25px;
+
+    float: left;
+
+    width: 350px;
+    height: 25px;
+
+    border: 0;
+    outline: none;		/* 取消chrome下的高亮 */
+}
+.search-input-button
+{
+    float: left;
+
+    width: 29px;
+    height: 29px;
+
+    cursor: pointer;
+
+    border: 0;
+    background-image: url(img/search-button.png);
+}
+.search-box
+{
+    position: absolute;
+    top: 150px;
+    left: 200px;
+}
+.suggest
+{
+    /*display: none;*/
+    width: 389px;
+
+    border: 1px solid #999;
+    background-color: #fff;
+}
+.suggest li
+{
+    font: 14px;
+    line-height: 25px;
+
+    padding: 3px;
+}
+.suggest li:hover
+{
+    cursor: pointer;
+    text-decoration: underline;
+
+    background-color: #e5e5e5;
+}
