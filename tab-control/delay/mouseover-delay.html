@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Tab切换</title>
+	<link rel="stylesheet" href="reset.css">
+	<script type="text/javascript" src="basic-delay.js"></script>
+	<style>
+		body {
+			font-size :12px;
+		}
+		.notice {
+			width: 298px;
+			height: 98px;
+			margin: 10px;
+			border: 1px solid #eee;
+			/*position: relative;*/
+			overflow: hidden;
+		}
+		.notice-title {
+			/*position: relative;*/
+			height: 27px;
+			background: #f7f7f7;
+
+		}
+		.notice-title ul {
+			/*position: absolute;*/
+			width: 301px;
+			margin-left: -1px;
+			overflow: hidden;
+		}
+		.notice-title li {
+			float: left;
+			width: 58px;
+			height: 26px;
+			padding: 0 1px;
+			line-height: 26px;
+			text-align: center;
+			/*overflow:hidden;*/
+			border-bottom: 1px solid #eee;
+		}
+		.notice-title .selected
+		{
+			border-left: 1px solid #eee;
+			border-right: 1px solid #eee;
+			border-bottom-color: #fff;
+			font-weight: bold;
+			background: #fff;
+			padding: 0;
+		}
+		.notice-con .mod {
+			margin: 10px;
+			margin-left: 19px;
+		}
+		.notice-con .mod li {
+			float: left;
+			width: 134px;
+			height: 25px;
+		}
+	</style>
+</head>
+<body>
+	<div class="notice" id="notice">
+		<div class="notice-title" id="notice-title">
+			<ul id>
+				<li><a href="">公告</a></li>
+				<li><a href="">规则</a></li>
+				<li class="selected"><a href="">论坛</a></li>
+				<li><a href="">安全</a></li>
+				<li><a href="">公益</a></li>
+			</ul>
+		</div>
+
+		<div class="notice-con">
+			<div class="mod" style="display:none;">
+				<ul>
+					<li><a href="">公告2222</a></li>
+					<li><a href="">规则2222</a></li>
+					<li><a href="">论坛2222</a></li>
+					<li><a href="">安全2222</a></li>
+				</ul>
+			</div>
+			<div class="mod" style="display:none;">
+				<ul>
+					<li><a href="">公告3333</a></li>
+					<li><a href="">规则3333</a></li>
+					<li><a href="">论坛3333</a></li>
+					<li><a href="">安全3333</a></li>
+				</ul>
+			</div>
+			<div class="mod" style="display:block;">
+				<ul>
+					<li><a href="">公告4444</a></li>
+					<li><a href="">规则4444</a></li>
+					<li><a href="">论坛4444</a></li>
+					<li><a href="">安全4444</a></li>
+				</ul>
+			</div>
+			<div class="mod" style="display:none;">
+				<ul>
+					<li><a href="">公告5555</a></li>
+					<li><a href="">规则5555</a></li>
+					<li><a href="">论坛5555</a></li>
+					<li><a href="">安全5555</a></li>
+				</ul>
+			</div>
+			<div class="mod" style="display:none;">
+				<ul>
+					<li><a href="">公告6666</a></li>
+					<li><a href="">规则6666</a></li>
+					<li><a href="">论坛6666</a></li>
+					<li><a href="">安全6666</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
