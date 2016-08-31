@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>展开与收起效果</title>
+	<link rel="stylesheet" href="reset.css">
+	<link rel="stylesheet" href="basic.css">
+</head>
+<body>
+	<div class="wrapper">
+		<div class="pn">
+			<p>手机-商品筛选</p>
+			<p>网络： 移动4G 联通3G 电信3G</p>
+			<div style="display:block;">
+				<p>价格：5000以上 4000-4999 3000-39999</p>
+				<p>特点：JDPhone计划 “0”元购机 防水 长待机 1080全高清屏</p>
+			</div>
+		</div>
+		<p class="slide">
+			<a href="javascript:;" class="btn-slide">更多选项+</a>
+		</p>
+		<div class="aside" style="display:none;">
+			<p>some text</p>
+		</div>
+	</div>
+	
+	<script>
+		window.onload = function(){
+			var btn = document.getElementsByClassName("btn-slide")[0];
+			var aside = document.getElementsByClassName('aside')[0];
+			btn.onclick = function() {
+				if(aside.style.display == "none") {
+					aside.style.display = "block";
+				} else if (aside.style.display == "block") {
+					aside.style.display = "none";
+				}
+			};
+		};
+	</script>
+</body>
+</html>

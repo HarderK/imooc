@@ -1,0 +1,35 @@
+.wrapper {
+	margin: 0 auto;
+	width: 960px;
+}
+.pn {
+	background: #e8e8e8;
+	width: 600px;
+	margin: 0 auto;
+	font-size: 12px;
+}
+.pn p {
+	padding: 6px 0 6px 6px;
+}
+.slide {
+	width: 600px;
+	margin: 0 auto;
+	border-top: solid 4px gray;
+}
+.slide .btn-slide {
+	display: block;
+	background: #808080;
+	width: 120px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	color: #fff;
+	margin: 0 auto;
+}
+div.aside {
+	width: 600px;
+	height: 100px;
+	margin: 0 auto;
+	background-color: #e8e8e8;
+	text-align: center;		/*有继承性*/
+}
