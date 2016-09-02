@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>鼠标拖拽</title>
+	<style>
+		* {padding: 0; margin: 0;}
+		body {
+			background: url(images/baidu_demo.png) no-repeat top center #fff;
+			font-size: 12px;
+			font-family: "微软雅黑";
+		}
+		.ui-dialog {
+			position: absolute;
+			width: 380px;
+			background-color: #fff;
+			z-index: 1000;
+			border: 1px solid #d5d5d5;
+		}
+		.ui-dialog-title {
+			height: 40px;
+			line-height: 40px;
+			padding-left: 20px;
+			border-bottom: 1px solid #efefef;
+			background-color: #f7f7f7;
+			color: #666;
+			font-size: 16px;
+			cursor: move;
+		}
+		.ui-dialog-closebutton {
+			position: absolute;
+			top: 12px;
+			right: 16px;
+			background: url(images/close_def.png);
+			width: 16px;
+			height: 16px;
+		}
+		.ui-dialog-closebutton:hover {
+			background: url(images/close_hov.png);
+		}
+		.ui-dialog-content{
+			padding: 20px 10px;
+		}
+		.ui-dialog-username {
+			width: 358px;
+			height: 30px;
+			border: 1px solid #efefef;
+			background: url(images/input_username.png) no-repeat left center;
+		}
+		.ui-dialog-username input {
+			float:right;
+			width: 330px;
+			height: 30px;
+			line-height: 30px;
+			border: none;
+		}
+		.ui-dialog-password {
+			width: 358px;
+			height: 30px;
+			margin-top: 10px;
+			border: 1px solid #efefef;
+			background: url(images/input_password.png) no-repeat left center;
+		}
+		.ui-dialog-password input {
+			float:right;
+			width: 330px;
+			height: 30px;
+			line-height: 30px;
+			border: none;
+		}
+		.ui-dialog-submit {
+			display: block;
+			margin-top: 30px;
+			border: 1px solid #085ac9;
+			width: 358px;
+			height: 40px;
+			background-color: #3f89ec;
+			color: #fff;
+			font-size: 14px;
+			font-weight: bold;
+		}
+		.ui-mask {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: #000;
+			filter: alpha(opacity=40);
+			opacity: .4;
+			z-index: 500;
+		}
+		.link {
+		/*	position: absolute;
+			top: 0;
+			right: 0;*/
+			text-align: right;
+			padding-right: 40px;
+			padding-top: 10px;
+		}
+	</style>
+</head>
+<body>
+	<div class="ui-dialog" id="dialog" style="display: none;">
+		<div class="ui-dialog-title" id="dialogTitle">登录通行证 <a href="javascript:;" class="ui-dialog-closebutton" id="close-button"></a></div>
+		<div class="ui-dialog-content">
+			<div class="ui-dialog-username">
+				<input type="text"  placeholder="手机/邮箱/用户名">
+			</div>
+			<div class="ui-dialog-password">
+				<input type="password" placeholder="密码">
+			</div>
+			
+			<input type="submit" value="登录" class="ui-dialog-submit">
+		</div>
+	</div>
+	<div class="ui-mask" id="mask" style="display: none;"></div>
+	<div class="link">
+			<a href="javascript:;" id="link">登录</a>
+	</div>
+
+	<script>
+		// 获取元素对象
+		function g(id) { return document.getElementById(id);}
+
+		// 自动居中 - 登录浮层
+		function autoCenter(el) {
+			var elWidth = el.offsetWidth,	// 偏移
+				elHeight = el.offsetHeight;
+			el.style.left = "50%"
+			el.style.top = "50%";
+			el.style.marginLeft = -elWidth/2 + "px";
+			el.style.marginTop = -elHeight/2 + "px";
+
+		}
+
+		// 自动全屏 - 遮罩
+		function fillToBody(el) {
+			el.style.width = document.documentElement.clientWidth || document.body.clientWidht;
+			el.style.height = document.documentElement.clientHeight || document.body.clientHeight;
+			el.style.display = "block";
+		}
+
+		function showPanel (el) {
+
+		}
+
+		window.onload = function() {
+			var mouseOffsetX = 0,
+				mouseOffsetY = 0,
+				isDraging = false;
+			g('dialogTitle').addEventListener("mousedown", function(e){
+				var e = e || window.event;
+				console.log(e.pageX, e.pageY);
+				mouseOffsetX = e.clientX - g("dialog").offsetLeft;
+				mouseOffsetY = e.clientY - g("dialog").offsetTop;
+				isDraging = true;
+
+			}, false);
+
+			document.addEventListener("mousemove", function(e) {
+				e = e || window.event;
+
+				var mouseX = e.clientX;
+				var mouseY = e.clientY;
+				var moveX = 0;
+				var moveY = 0;
+
+				if(isDraging === true) {
+					moveX = mouseX - mouseOffsetX;
+					moveY = mouseY - mouseOffsetY;
+
+					var maxX = document.documentElement.clientWidth - g("dialog").offsetWidth;
+					var maxY = document.documentElement.clientHeight - g("dialog").offsetHeight;
+
+					moveX = Math.min(Math.max(0, moveX), maxX);
+					moveY = Math.min(Math.max(0, moveY), maxY);
+
+					g("dialog").style.left = moveX + "px";
+					g("dialog").style.top = moveY + "px";
+				}
+			}, true);
+
+			document.addEventListener("mouseup", function(){
+				isDraging = false;
+			}, true);
+
+			window.onresize = function() {
+				autoCenter(g("dialog"));
+			}
+			g("link").addEventListener("click", function(){
+				g("dialog").style.display = "block";
+				autoCenter(g("dialog"));
+				fillToBody(g("mask"));
+			}, false);
+			g("close-button").addEventListener("click", function(){
+				g("dialog").style.display = "none";
+				g("mask").style.display = "none";
+			}, false);
+		};	
+	</script>
+</body>
+</html>
