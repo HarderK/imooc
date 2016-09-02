@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>放大镜</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		div.wrap {
+			position: relative;
+			margin: 50px;
+
+		}
+		#small-box {
+			position: relative;
+			width: 400px;
+			height: 255px;
+			border: 1px solid #ccc;
+		}
+		#float-box {
+			position: absolute;
+			width: 160px;
+			height: 120px;
+			border: 1px solid #ccc;
+			background: #ff0;
+			filter: alpha(opacity=25);
+			opacity: .25;
+			cursor: move;
+			z-index: 2;
+
+		}
+		#big-box {
+			position: absolute;
+			top: 0;
+			left: 420px;
+			z-index: 3;
+			width: 410px;
+			height: 307px;
+			border: 1px solid #ccc;
+			overflow: hidden;
+		}
+		#big-box img {
+			position: absolute;
+		}
+	</style>
+</head>
+<body>
+	<div class="wrap">
+		<div id="small-box">
+			<div id="float-box" style="display: none; "></div>
+			<img src="images/macbook-small.jpg">
+		</div>
+		<div id="big-box" style="display: none;">
+			<img src="images/macbook-big.jpg">
+		</div>
+	</div>
+	<script>
+		// 函数  通过id获取元素
+		function g(id) {
+				return document.getElementById(id);
+			};
+
+		// 函数 获取元素的视口位置信息
+		function getElementPosition(e) {
+			var x = 0, y = 0; 
+			if(e.getBoundingClientRect) {
+				var obj = e.getBoundingClientRect();
+				return {x: obj.x || obj.left, y: obj.y || obj.top};
+			} else {
+				var elt = e;
+				while (elt != null) {
+					x += elt.offsetLeft;
+					y += elt.offsetTop;
+
+				}
+				for(e = e.parentNode; e!= null && e.nodeType == 1; e = e.parentNode) {
+					x -= e.scrollLeft;
+					y -= e.scrollTop;
+				}
+				return {x: x, y: y};
+			}
+
+		}
+
+		window.onload = function() {
+
+
+			var smallBox = g("small-box"),
+				bigBox = g("big-box"),
+				floatBox = g("float-box"),
+				img = bigBox.getElementsByTagName("img")[0];
+			// console.log(smallBox, bigBox, floatBox);
+
+			smallBox.onmouseover = function() {
+				floatBox.style.display = "block";
+				bigBox.style.display = "block";
+			};
+
+			smallBox.onmouseout = function() {
+				floatBox.style.display = "none";
+				bigBox.style.display = "none";
+			};
+
+			smallBox.onmousemove = function(event) {
+				event = event || window.event;
+				var percentage = bigBox.offsetWidth / floatBox.offsetWidth;
+				var objPos = getElementsByTagName(smallBox);		// 获取smallBox的视口位置信息
+
+				// 鼠标位于floatBox的正中间
+				var left = event.clientX - objPos.x - floatBox.offsetWidth/2;	
+				var top = event.clientY - objPos.y - floatBox.offsetHeight/2;
+
+				// 超出边界，则设置会边界处
+				if(left < 0) {
+					left = 0;
+				} else if (left > smallBox.offsetWidth - floatBox.offsetWidth) {
+					left = smallBox.offsetWidth - floatBox.offsetWidth;
+				}
+
+				if(top < 0) {
+					top = 0;
+				} else if (top > smallBox.offsetHeight - floatBox.offsetHeight){
+					top = smallBox.offsetHeight - floatBox.offsetHeight;
+				}
+				floatBox.style.left = left + "px";
+				floatBox.style.top = top + "px";
+				img.style.left = -left * percentage + "px";
+				img.style.top = -top * percentage + "px";
+
+
+
+			};
+		};
+	</script>
+</body>
+</html>
